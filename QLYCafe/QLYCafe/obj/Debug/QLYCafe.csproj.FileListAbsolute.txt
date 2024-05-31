@@ -1,0 +1,13 @@
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\bin\Debug\QLYCafe.exe.config
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\bin\Debug\QLYCafe.exe
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\bin\Debug\QLYCafe.pdb
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.csproj.AssemblyReference.cache
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.fLogin.resources
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.Properties.Resources.resources
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.csproj.GenerateResource.cache
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.csproj.CoreCompileInputs.cache
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.exe
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.pdb
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.fTableManager.resources
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.fAccountProfile.resources
+C:\Users\Maniac\Documents\HSK\QLYCafe\QLYCafe\obj\Debug\QLYCafe.fAdmin.resources
