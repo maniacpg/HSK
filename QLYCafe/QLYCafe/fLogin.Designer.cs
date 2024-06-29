@@ -61,6 +61,7 @@ namespace QLYCafe
             // 
             // btnExit
             // 
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.Location = new System.Drawing.Point(351, 314);
             this.btnExit.Name = "btnExit";
@@ -89,6 +90,7 @@ namespace QLYCafe
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(566, 88);
             this.panel3.TabIndex = 1;
+            this.panel3.Paint += new System.Windows.Forms.PaintEventHandler(this.panel3_Paint);
             // 
             // txbUserName
             // 
@@ -106,6 +108,7 @@ namespace QLYCafe
             this.UserName.Size = new System.Drawing.Size(114, 18);
             this.UserName.TabIndex = 0;
             this.UserName.Text = "Tên đăng nhập";
+            this.UserName.Click += new System.EventHandler(this.UserName_Click);
             // 
             // panel2
             // 
@@ -160,8 +163,9 @@ namespace QLYCafe
             this.Controls.Add(this.panel1);
             this.Name = "fLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "fLogin";
+            this.Text = "Cafe HaNoi";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.fLogin_FormClosing);
+            this.Load += new System.EventHandler(this.fLogin_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);

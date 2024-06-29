@@ -44,13 +44,7 @@ create table DoUong
 go
 
 -- Customer
-create table KhachHang
-(
-	id int identity primary key,
-	TenKH nvarchar(100) not null default N'Chưa đặt tên',
-	SDTKH nvarchar(20),
-	emailKH nvarchar(100),
-)
+
 
 -- Staff
 create table NhanVien
@@ -122,5 +116,69 @@ create table ChiTietHoaDonNhapHang
 	foreign key (idDoUong) references dbo.DoUong(id)              
 )
 go
+create table KhachHang
+(
+	id int identity primary key,
+	TenKH nvarchar(100) not null default N'Chưa đặt tên',
+	SDTKH nvarchar(20),
+	emailKH nvarchar(100),
+)
+alter table dbo.KhachHang 
+alter column id int
 
---insert
+SET IDENTITY_INSERT KhachHang ON;
+INSERT INTO KhachHang (id, TenKH, SDTKH, emailKH)
+VALUES 
+(1, N'Nguyễn Văn An', '0901234567', 'nguyenvanan@email.com'),
+(2, N'Trần Thị Bình', '0912345678', 'tranthibinh@email.com'),
+(3, N'Lê Hoàng Cường', '0923456789', 'lehoangcuong@email.com'),
+(4, N'Phạm Thị Dung', '0934567890', 'phamthidung@email.com'),
+(5, N'Hoàng Văn Em', '0945678901', 'hoangvanem@email.com'),
+(6, N'Ngô Thị Fương', '0956789012', 'ngothifuong@email.com'),
+(7, N'Đặng Văn Giang', '0967890123', 'dangvangiang@email.com'),
+(8, N'Bùi Thị Hoa', '0978901234', 'buithihoa@email.com'),
+(9, N'Lý Văn Inh', '0989012345', 'lyvaninh@email.com'),
+(10, N'Vũ Thị Kim', '0990123456', 'vuthikim@email.com');
+--procedure
+create procedure Insert_KhachHang
+
+ @TenKH nvarchar(100),
+ @SDTKH nvarchar(20),
+ @emailKH nvarchar(100)
+ as
+ begin
+ insert into KhachHang( TenKH, SDTKH, emailKH)
+ values ( @TenKH, @SDTKH, @emailKH)
+ end
+ go
+
+ create procedure Select_KhachHang
+ as
+ begin
+ select id, TenKH, SDTKH, emailKH
+ from KhachHang;
+ end 
+ go
+ CREATE PROCEDURE Update_KhachHang
+    @ID INT,
+    @TenKH NVARCHAR(100),
+    @SDTKH NVARCHAR(20),
+    @EmailKH NVARCHAR(100)
+AS
+BEGIN
+    UPDATE KhachHang
+    SET TenKH = @TenKH,
+        SDTKH = @SDTKH,
+        emailKH = @EmailKH
+    WHERE id = @ID;
+END
+GO
+
+CREATE PROCEDURE Delete_KhachHang
+    @ID INT
+AS
+BEGIN
+    DELETE FROM KhachHang
+    WHERE id = @ID;
+END
+GO

@@ -36,7 +36,25 @@ namespace QLYCafe
         private void adminToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAdmin f =new fAdmin();
+            this.Hide();
             f.ShowDialog();
+            this.Show();
+        }
+
+        private void quảnLýNhậpHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            fNhapHang f = new fNhapHang();
+            f.ShowDialog();
+        }
+
+        private void tàiKhoảnToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void fTableManager_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

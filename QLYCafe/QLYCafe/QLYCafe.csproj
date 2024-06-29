@@ -46,6 +46,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddAcc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddAcc.Designer.cs">
+      <DependentUpon>AddAcc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DelAcc.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DelAcc.Designer.cs">
+      <DependentUpon>DelAcc.cs</DependentUpon>
+    </Compile>
     <Compile Include="fAccountProfile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +76,12 @@
     <Compile Include="fLogin.Designer.cs">
       <DependentUpon>fLogin.cs</DependentUpon>
     </Compile>
+    <Compile Include="fNhapHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fNhapHang.Designer.cs">
+      <DependentUpon>fNhapHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="fTableManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +90,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="AddAcc.resx">
+      <DependentUpon>AddAcc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DelAcc.resx">
+      <DependentUpon>DelAcc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="fAccountProfile.resx">
       <DependentUpon>fAccountProfile.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +104,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fLogin.resx">
       <DependentUpon>fLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fNhapHang.resx">
+      <DependentUpon>fNhapHang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fTableManager.resx">
       <DependentUpon>fTableManager.cs</DependentUpon>

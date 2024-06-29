@@ -34,13 +34,26 @@ namespace QLYCafe
         {
             // Xử lý logic khi form đang đóng
             // Ví dụ: Hiển thị thông báo xác nhận
-            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("Bạn có chắc chắn muốn thoát?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (result == DialogResult.No)
             {
                 e.Cancel = true;
             }
         }
 
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
+
+        private void fLogin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void UserName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

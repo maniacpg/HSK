@@ -226,7 +226,7 @@
             this.Controls.Add(this.panel3);
             this.Name = "fAccountProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "fAccountProfile";
+            this.Text = "Tai Khoan";
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
