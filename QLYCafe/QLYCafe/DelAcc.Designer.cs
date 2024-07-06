@@ -75,7 +75,7 @@
             this.Name = "DelAcc";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nhập tên tài khoản";
-            this.Load += new System.EventHandler(this.DelAcc_Load);
+            //this.Load += new System.EventHandler(this.DelAcc_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

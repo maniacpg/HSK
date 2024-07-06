@@ -8,12 +8,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Configuration;
 
 namespace QLYCafe
 {
     public partial class DelAcc : Form
     {
-        string connectionString = "Data Source=MANIAC\\SQLEXPRESS;Initial Catalog=QLyQuanCafe1;Integrated Security=True";
+        //string connectionString = "Data Source=MANIAC\\SQLEXPRESS;Initial Catalog=QLyQuanCafe1;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["CafeDatabase"].ConnectionString;
         public string InputValue { get; private set; }
 
         public DelAcc()
@@ -21,6 +23,7 @@ namespace QLYCafe
             InitializeComponent();
         }
 
+        
         private void btnOK_Click(object sender, EventArgs e)
         {
             // Kiểm tra dữ liệu đầu vào
@@ -72,10 +75,7 @@ namespace QLYCafe
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-        private void DelAcc_Load(object sender, EventArgs e)
-        {
-            // Các thao tác cần thiết khi form được tải vào đây
-        }
+        
 
     }
 }

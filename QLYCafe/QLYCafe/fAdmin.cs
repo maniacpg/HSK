@@ -1,6 +1,8 @@
-﻿using System;
+﻿using QLYCafe.DAO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -13,11 +15,14 @@ namespace QLYCafe
 {
     public partial class fAdmin : Form
     {
-        string connectionString = "Data Source=MANIAC\\SQLEXPRESS;Initial Catalog=QLyQuanCafe1;Integrated Security=True";
+        //string connectionString = "Data Source=MANIAC\\SQLEXPRESS;Initial Catalog=QLyQuanCafe1;Integrated Security=True";
+        
         public fAdmin()
         {
             InitializeComponent();
             Load_AccList();
+            Load_DoUongList();
+            Load_DanhMucDoUongList();
         }
 
         private void btnEditFood_Click(object sender, EventArgs e)
@@ -62,34 +67,27 @@ namespace QLYCafe
         {
 
 
-            string querySelect = "Select_All_TaiKhoan";
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand(querySelect, conn))
-                    {
-                        cmd.CommandText = querySelect;
-                        cmd.CommandType = CommandType.StoredProcedure;
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
-                        {
-                            adapter.SelectCommand = cmd;
-                            using (DataTable dt = new DataTable())
-                            {
-                                adapter.Fill(dt);
-                                dgvAcc.DataSource = dt;
-                            }
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Khong tim thay tai khoan!");
-            }
+            string query = "Select_All_TaiKhoan";
+           
+            dgvAcc.DataSource = DataProvider.Instance.ExecuteQuery(query);
 
 
         }
+        public void Load_DoUongList()
+        {
+            string query = "select * from DoUong";
+
+            dtgvDoUong.DataSource = DataProvider.Instance.ExecuteQuery(query);
+        }
+
+        public void Load_DanhMucDoUongList()
+        {
+            string query = "select * from DanhmucDoUong";
+
+            dtgvCategory.DataSource = DataProvider.Instance.ExecuteQuery(query);
+        }
+
+
         private void btnAddAcc_Click(object sender, EventArgs e)
         {
             AddAcc f = new AddAcc();
@@ -105,6 +103,11 @@ namespace QLYCafe
             f.ShowDialog();
         }
         private void fAdmin_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dtgvBill_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -14,7 +15,8 @@ namespace QLYCafe
 {
     public partial class AddAcc : Form
     {
-        string connectionString = "Data Source=MANIAC\\SQLEXPRESS;Initial Catalog=QLyQuanCafe1;Integrated Security=True";
+        //string connectionString = "Data Source=MANIAC\\SQLEXPRESS;Initial Catalog=QLyQuanCafe1;Integrated Security=True";
+        string connectionString = ConfigurationManager.ConnectionStrings["CafeDatabase"].ConnectionString;
         private ErrorProvider errorProvider;
         public AddAcc()
         {

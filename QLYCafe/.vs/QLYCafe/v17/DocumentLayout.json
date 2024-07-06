@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|c:\\users\\maniac\\documents\\hsk\\btl_lthsk2024\\qlycafe\\qlycafe\\delacc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|solutionrelative:qlycafe\\delacc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|c:\\users\\maniac\\documents\\hsk\\btl_lthsk2024\\qlycafe\\qlycafe\\ftablemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|solutionrelative:qlycafe\\ftablemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|c:\\users\\maniac\\documents\\hsk\\btl_lthsk2024\\qlycafe\\qlycafe\\delacc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|solutionrelative:qlycafe\\delacc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|c:\\users\\maniac\\documents\\hsk\\btl_lthsk2024\\qlycafe\\qlycafe\\dao\\menudao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|solutionrelative:qlycafe\\dao\\menudao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|c:\\users\\maniac\\documents\\hsk\\btl_lthsk2024\\qlycafe\\qlycafe\\fadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|solutionrelative:qlycafe\\fadmin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|c:\\users\\maniac\\documents\\hsk\\btl_lthsk2024\\qlycafe\\qlycafe\\ftablemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|solutionrelative:qlycafe\\ftablemanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|c:\\users\\maniac\\documents\\hsk\\btl_lthsk2024\\qlycafe\\qlycafe\\addacc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|solutionrelative:qlycafe\\addacc.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|c:\\users\\maniac\\documents\\hsk\\btl_lthsk2024\\qlycafe\\qlycafe\\dto\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A6DA5A77-5EFD-48B0-BB81-4129E59412BD}|QLYCafe\\QLYCafe.csproj|solutionrelative:qlycafe\\dto\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,32 +26,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 6,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "DelAcc.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\DelAcc.cs",
-              "RelativeDocumentMoniker": "QLYCafe\\DelAcc.cs",
-              "ToolTip": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\DelAcc.cs [Design]",
-              "RelativeToolTip": "QLYCafe\\DelAcc.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T20:14:38.863Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DelAcc.cs",
-              "DocumentMoniker": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\DelAcc.cs",
-              "RelativeDocumentMoniker": "QLYCafe\\DelAcc.cs",
-              "ToolTip": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\DelAcc.cs",
-              "RelativeToolTip": "QLYCafe\\DelAcc.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAkwCgAAAA2AAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T19:36:09.308Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Bookmark",
@@ -67,29 +46,54 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "fAdmin.cs",
-              "DocumentMoniker": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\fAdmin.cs",
-              "RelativeDocumentMoniker": "QLYCafe\\fAdmin.cs",
-              "ToolTip": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\fAdmin.cs",
-              "RelativeToolTip": "QLYCafe\\fAdmin.cs",
-              "ViewState": "AQIAAEwAAAAAAAAAAAAqwGgAAAAMAAAA",
+              "DocumentIndex": 1,
+              "Title": "MenuDAO.cs",
+              "DocumentMoniker": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\DAO\\MenuDAO.cs",
+              "RelativeDocumentMoniker": "QLYCafe\\DAO\\MenuDAO.cs",
+              "ToolTip": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\DAO\\MenuDAO.cs",
+              "RelativeToolTip": "QLYCafe\\DAO\\MenuDAO.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABoAAADlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T18:47:49.301Z",
+              "WhenOpened": "2024-07-06T14:18:43.133Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "AddAcc.cs",
-              "DocumentMoniker": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\AddAcc.cs",
-              "RelativeDocumentMoniker": "QLYCafe\\AddAcc.cs",
-              "ToolTip": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\AddAcc.cs",
-              "RelativeToolTip": "QLYCafe\\AddAcc.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABEAAAAsAAAA",
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\DTO\\Menu.cs",
+              "RelativeDocumentMoniker": "QLYCafe\\DTO\\Menu.cs",
+              "ToolTip": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\DTO\\Menu.cs",
+              "RelativeToolTip": "QLYCafe\\DTO\\Menu.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAQwBYAAAA4AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-29T18:46:40.879Z",
+              "WhenOpened": "2024-07-06T14:13:26.327Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "fTableManager.cs",
+              "DocumentMoniker": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\fTableManager.cs",
+              "RelativeDocumentMoniker": "QLYCafe\\fTableManager.cs",
+              "ToolTip": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\fTableManager.cs",
+              "RelativeToolTip": "QLYCafe\\fTableManager.cs",
+              "ViewState": "AQIAACwAAAAAAAAAAAAgwDkAAAA0AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T11:33:52.873Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "fTableManager.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\fTableManager.cs",
+              "RelativeDocumentMoniker": "QLYCafe\\fTableManager.cs",
+              "ToolTip": "C:\\Users\\Maniac\\Documents\\HSK\\BTL_LTHSK2024\\QLYCafe\\QLYCafe\\fTableManager.cs [Design]",
+              "RelativeToolTip": "QLYCafe\\fTableManager.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-06T11:33:47.656Z",
+              "EditorCaption": " [Design]"
             }
           ]
         }
