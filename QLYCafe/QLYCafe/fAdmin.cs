@@ -24,7 +24,48 @@ namespace QLYCafe
             Load_DoUongList();
             Load_DanhMucDoUongList();
         }
+        #region method
+        private void fAdmin_Load(object sender, EventArgs e)
+        {
 
+        }
+        private void AddAccForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Load_AccList(); // Load lại dữ liệu sau khi form AddAcc đã đóng
+        }
+        public void Load_AccList()
+        {
+
+
+            string query = "Select_All_TaiKhoan";
+
+            dgvAcc.DataSource = DataProvider.Instance.ExecuteQuery(query);
+
+
+        }
+        public void Load_DoUongList()
+        {
+            string query = "select * from DoUong";
+
+            dtgvDoUong.DataSource = DataProvider.Instance.ExecuteQuery(query);
+        }
+
+        public void Load_DanhMucDoUongList()
+        {
+            string query = "select * from DanhmucDoUong";
+
+            dtgvCategory.DataSource = DataProvider.Instance.ExecuteQuery(query);
+        }
+
+        void LoadListByDate(DateTime checkIn, DateTime checkOut)
+        {
+           dtgvBill.DataSource = HoaDonDAO.Instance.LayDSHoaDonTheoNgay(checkIn, checkOut);
+        }
+        #endregion
+
+
+
+        #region events
         private void btnEditFood_Click(object sender, EventArgs e)
         {
 
@@ -59,33 +100,7 @@ namespace QLYCafe
         {
 
         }
-        private void AddAccForm_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Load_AccList(); // Load lại dữ liệu sau khi form AddAcc đã đóng
-        }
-        public void Load_AccList()
-        {
 
-
-            string query = "Select_All_TaiKhoan";
-           
-            dgvAcc.DataSource = DataProvider.Instance.ExecuteQuery(query);
-
-
-        }
-        public void Load_DoUongList()
-        {
-            string query = "select * from DoUong";
-
-            dtgvDoUong.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        }
-
-        public void Load_DanhMucDoUongList()
-        {
-            string query = "select * from DanhmucDoUong";
-
-            dtgvCategory.DataSource = DataProvider.Instance.ExecuteQuery(query);
-        }
 
 
         private void btnAddAcc_Click(object sender, EventArgs e)
@@ -97,19 +112,24 @@ namespace QLYCafe
         }
         private void btnDelAcc_Click(object sender, EventArgs e)
         {
-            
+
             DelAcc f = new DelAcc();
             f.FormClosed += AddAccForm_FormClosed;
             f.ShowDialog();
         }
-        private void fAdmin_Load(object sender, EventArgs e)
-        {
 
-        }
 
         private void dtgvBill_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
         }
+
+        private void btnViewBill_Click(object sender, EventArgs e)
+        {
+            LoadListByDate(dtpFrom.Value, dtpTo.Value);
+        }
+        #endregion
+
+
     }
 }

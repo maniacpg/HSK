@@ -34,5 +34,9 @@ namespace QLYCafe.DAO
             }
             return list;
         }
+        public void ChuyenBan(int id1, int id2)
+        {
+            DataProvider.Instance.ExecuteQuery("ChuyenBan @idBan1, @idBan2", new object[] {id1, id2});
+        }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using QLYCafe.DAO;
+using QLYCafe.DTO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,7 +31,8 @@ namespace QLYCafe
             {
                 if (Login(userName, passWord))
                 {
-                    fTableManager f = new fTableManager();
+                    Account loginAcc = AccountDAO.Instance.GetAccountByUserName(userName);
+                    fTableManager f = new fTableManager(loginAcc);
                     this.Hide();
                     f.ShowDialog();
                     this.Show();

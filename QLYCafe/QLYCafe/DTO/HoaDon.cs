@@ -9,7 +9,7 @@ namespace QLYCafe.DTO
 {
     internal class HoaDon
     {
-        public HoaDon(int id, DateTime? dateCheckIn, DateTime? dateCheckOut, int idBan, int status, int idKh, int idNv)
+        public HoaDon(int id, DateTime? dateCheckIn, DateTime? dateCheckOut, int idBan, int status, int idKh, int idNv, int giamgia = 0)
         {
             this.Id = id;
             this.DateCheckIn = dateCheckIn;
@@ -18,6 +18,7 @@ namespace QLYCafe.DTO
             this.Status = status;
             this.IdKh = idKh;
             this.IdNv = idNv;
+            this.GiamGia = giamgia;
         }
         private int iD;
         private DateTime? dateCheckIn;
@@ -26,6 +27,7 @@ namespace QLYCafe.DTO
         private int status;
         private int idKh;
         private int idNv;
+       private int giamGia;
 
         public HoaDon(DataRow row)
         {
@@ -39,8 +41,17 @@ namespace QLYCafe.DTO
 
             this.IdBan = (int)row["idBan"];
             this.Status= (int)row["status"];
-            this.IdKh = (int)row["idKH"];
-            this.IdNv = (int)row["idNV"];
+            this.GiamGia = row["GiamGia"] != DBNull.Value ? Convert.ToInt32(row["GiamGia"]) : 0;
+
+            //this.IdKh = Convert.ToInt32(row["idKH"]);
+
+            //this.IdNv = (int)row["idNV"];
+        }
+
+        public int GiamGia
+        {
+            get { return giamGia; }
+            set { giamGia = value; }
         }
         public int Id
         {

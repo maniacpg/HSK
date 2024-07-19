@@ -16,8 +16,8 @@ namespace QLYCafe
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new fLogin());
-            Application.Run(new fTableManager());
+            Application.Run(new fLogin());
+            //Application.Run(new fTableManager());
         }
     }
 }

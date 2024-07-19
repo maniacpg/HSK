@@ -5,6 +5,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QLYCafe.DAO
 {
@@ -22,7 +23,7 @@ namespace QLYCafe.DAO
         public List<ChiTietHoaDon> LayDSCTHD(int id)
         {
             List<ChiTietHoaDon> listChiTietHoaDon = new List<ChiTietHoaDon>();
-            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM ChiTietHoaDonBan where idHoaDon = "+id);
+            DataTable data = DataProvider.Instance.ExecuteQuery("SELECT * FROM ChiTietHoaDonBan where idHoaDon = " + id);
             foreach (DataRow item in data.Rows)
             {
                 ChiTietHoaDon chitiet = new ChiTietHoaDon(item);
@@ -30,6 +31,17 @@ namespace QLYCafe.DAO
             }
             return listChiTietHoaDon;
         }
+        public void InsertChitiet(int idHoaDon, int idDoUong, int count)
+        {
+            try
+            {
+                DataProvider.Instance.ExecuteNonQuery("Insert_ChitietHoaDon @idHoaDon, @idDoUong, @count", new object[] { idHoaDon, idDoUong, count });
+            }
+            catch (Exception e) {
+                MessageBox.Show("Lỗi: " + e.Message);
+            }
+        }
+
 
 
     }

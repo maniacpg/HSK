@@ -16,5 +16,10 @@ namespace QLYCafe
         {
             InitializeComponent();
         }
+
+        private void fNhapHang_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

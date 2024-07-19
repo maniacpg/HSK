@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QLYCafe.DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,11 +13,26 @@ namespace QLYCafe
 {
     public partial class fAccountProfile : Form
     {
-        public fAccountProfile()
+        private Account loginAcc;
+
+        internal Account LoginAcc
+        {
+            get { return loginAcc; }
+            set { loginAcc = value; RoleAccount(loginAcc); }
+        }
+        public fAccountProfile(Account Acc)
         {
             InitializeComponent();
+            this.LoginAcc = Acc;
         }
 
+        void RoleAccount(Account Acc)
+        {
+            
+            txbUserName.Text = LoginAcc.Username;
+
+
+        }
         private void btnExitAcc_Click(object sender, EventArgs e)
         {
             this.Close();

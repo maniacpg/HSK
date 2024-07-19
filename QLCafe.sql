@@ -1,9 +1,10 @@
 ﻿-- Tạo cơ sở dữ liệu
-CREATE DATABASE QLCF
+CREATE DATABASE QLCF2
 GO
 
-USE QLCF
+USE QLCF2
 GO
+
 
 -- Bảng Ban
 CREATE TABLE Ban
@@ -37,24 +38,39 @@ INSERT INTO Ban (id, name, TrangThai) VALUES (18, N'Bàn 18', N'Trống');
 INSERT INTO Ban (id, name, TrangThai) VALUES (19, N'Bàn 19', N'Trống');
 INSERT INTO Ban (id, name, TrangThai) VALUES (20, N'Bàn 20', N'Trống');
 
-update Ban set TrangThai = N'Đầy' where id = 6
+
 -- Bảng TaiKhoan
 CREATE TABLE TaiKhoan
 (   
-    Ten NVARCHAR(100) NOT NULL,
+    
     TenTK NVARCHAR(100) PRIMARY KEY,
     MatKhau NVARCHAR(1000) NOT NULL DEFAULT N'0',
     Type INT NOT NULL DEFAULT 0 --1.admin/0.staff
 )
 GO
-select * from TaiKhoan where TenTK = N'maniac' and MatKhau = N'123456';
+ALTER TABLE TaiKhoan
+ADD idNhanVien INT;
+
+ALTER TABLE TaiKhoan
+ADD CONSTRAINT FK_TaiKhoan_NhanVien
+FOREIGN KEY (idNhanVien) REFERENCES NhanVien(id);
+INSERT INTO TaiKhoan (TenTK, MatKhau, Type, idNhanVien)
+VALUES 
+(N'kd', '1', 1, 1),
+(N'staff', '1', 0, 2);
+
+
+
 -- Bảng DanhmucDoUong
 CREATE TABLE DanhmucDoUong
 (
     id INT PRIMARY KEY,
-    TenDoUong NVARCHAR(100) NOT NULL DEFAULT N'Chua dat ten'
+    TenDanhMuc NVARCHAR(100) NOT NULL DEFAULT N'Chua dat ten'
 )
 GO
+
+
+
 -- Bảng DoUong
 
 CREATE TABLE DoUong
@@ -70,14 +86,27 @@ GO
 
 -- Chèn dữ liệu vào bảng DoUong
 INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (1, N'Cà phê đen', 1, 20000);
-INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (2, N'Trá đào', 2, 25000);
+INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (2, N'Trà đào', 2, 25000);
 INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (3, N'Pepsi', 3, 15000);
--- Chèn dữ liệu vào bảng DanhmucDoUong
-INSERT INTO DanhmucDoUong (id, TenDoUong) VALUES (1, N'Cà phê');
-INSERT INTO DanhmucDoUong (id, TenDoUong) VALUES (2, N'Trá');
-INSERT INTO DanhmucDoUong (id, TenDoUong) VALUES (3, N'Nước ngọt');
+-- Chèn thêm đồ uống vào danh mục 'Cà phê'
+INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (4, N'Cà phê sữa', 1, 22000);
+INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (5, N'Cà phê đá', 1, 18000);
 
-select * from DoUong
+-- Chèn thêm đồ uống vào danh mục 'Trà'
+INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (6, N'Trà chanh', 2, 23000);
+INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (7, N'Trà dâu', 2, 27000);
+
+-- Chèn thêm đồ uống vào danh mục 'Nước ngọt'
+INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (8, N'Coca', 3, 15000);
+INSERT INTO DoUong (id, TenDoUong, idDanhMuc, DonGia) VALUES (9, N'Sprite', 3, 15000);
+GO
+
+-- Chèn dữ liệu vào bảng DanhmucDoUong
+INSERT INTO DanhmucDoUong (id, TenDanhMuc) VALUES (1, N'Cà phê');
+INSERT INTO DanhmucDoUong (id, TenDanhMuc) VALUES (2, N'Trà');
+INSERT INTO DanhmucDoUong (id, TenDanhMuc) VALUES (3, N'Nước ngọt');
+
+
 
 -- Bảng NhanVien (không có IDENTITY ở cột id)
 CREATE TABLE NhanVien
@@ -90,6 +119,10 @@ CREATE TABLE NhanVien
     NgaySinh DATE
 )
 GO
+INSERT INTO NhanVien (id, TenNV, SDTNV, emailNV, GioiTinh, NgaySinh)
+VALUES 
+(1, N'Đình Quân', '0123456789', 'a@example.com', 1, '2001-05-27'),
+(2, N'Nguyễn An', '0987654321', 'b@example.com', 1, '1990-02-02');
 
 -- Bảng KhachHang
 CREATE TABLE KhachHang
@@ -102,20 +135,30 @@ CREATE TABLE KhachHang
 GO
 
 -- Bảng HoaDon
-CREATE TABLE HoaDon
+CREATE TABLE HoaDonBan
 (
     id INT IDENTITY PRIMARY KEY,
     DateCheckIn DATE NOT NULL DEFAULT GETDATE(),
     DateCheckOut DATE,
     idBan INT NOT NULL,
+	
     status INT NOT NULL,   -- 1.Paid/0.not paid
-    idKH INT,        
-    idNV INT,           
+               
     FOREIGN KEY (idBan) REFERENCES dbo.Ban(id),
-    FOREIGN KEY (idKH) REFERENCES dbo.KhachHang(id),
-    FOREIGN KEY (idNV) REFERENCES dbo.NhanVien(id)
+    
 )
 GO
+select * from HoaDonBan
+ALTER TABLE HoaDonBan
+ADD idNhanVien INT;
+
+ALTER TABLE HoaDonBan
+ADD CONSTRAINT FK_HoaDonBan_NhanVien
+FOREIGN KEY (idNhanVien) REFERENCES NhanVien(id);
+
+alter table HoaDonBan add GiamGia int
+update HoaDonBan set GiamGia = 0
+
 
 -- Bảng ChiTietHoaDonBan
 CREATE TABLE ChiTietHoaDonBan
@@ -124,7 +167,7 @@ CREATE TABLE ChiTietHoaDonBan
     idHoaDon INT NOT NULL,
     idDoUong INT NOT NULL,
     count INT NOT NULL DEFAULT 0,
-    FOREIGN KEY (idHoaDon) REFERENCES dbo.HoaDon(id),
+    FOREIGN KEY (idHoaDon) REFERENCES dbo.HoaDonBan(id),
     FOREIGN KEY (idDoUong) REFERENCES dbo.DoUong(id),
 )
 GO
@@ -241,7 +284,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     SELECT 
-        Ten, 
+        
         TenTK,         
         CASE 
             WHEN Type = 1 THEN N'Admin'
@@ -254,7 +297,7 @@ BEGIN
         TenTK
 END
 GO
-exec Select_All_TaiKhoan
+
 -- Update_TaiKhoan
 CREATE PROCEDURE Update_TaiKhoan
     @Ten NVARCHAR(100),
@@ -357,7 +400,7 @@ AS
 BEGIN
     SET NOCOUNT ON;
     
-    SELECT d.id, d.TenDoUong, d.DonGia, dm.TenDoUong AS TenDanhMuc
+    SELECT d.id, d.TenDoUong, d.DonGia, dm.TenDanhMuc AS TenDanhMuc
     FROM DoUong d
     INNER JOIN DanhmucDoUong dm ON d.idDanhMuc = dm.id;
 END
@@ -371,7 +414,7 @@ BEGIN
     SET NOCOUNT ON;
 
     SELECT 
-        Ten, 
+         
         TenTK, 
         MatKhau, 
         Type
@@ -389,98 +432,172 @@ begin
 select * from Ban
 end
 
-Exec Select_Ban
+create proc Insert_HoaDonBan
+@idBan int
+as
+begin 
+insert HoaDonBan(DateCheckIn, DateCheckOut, idBan, status, GiamGia, idNhanVien)
+values (getdate(), null, @idBan, 0, 0, null)
 
--- Thêm dữ liệu mẫu
-INSERT INTO NhanVien (id, TenNV, SDTNV, emailNV, GioiTinh, NgaySinh)
-VALUES 
-(1, N'Nguyễn Văn Hùng', '0901234567', 'nguyenvanhung@email.com', 1, '1990-01-15'),
-(2, N'Trần Thị Mai', '0912345678', 'tranthimai@email.com', 0, '1992-05-20'),
-(3, N'Lê Minh Tuấn', '0923456789', 'leminhtuanh@email.com', 1, '1988-11-30'),
-(4, N'Phạm Thị Hương', '0934567890', 'phamthihuong@email.com', 0, '1995-08-10'),
-(5, N'Hoàng Đức Anh', '0945678901', 'hoangducanh@email.com', 1, '1993-03-25'),
-(6, N'Vũ Thị Lan Anh', '0956789012', 'vuthilananh@email.com', 0, '1991-12-05')
+end
+go
+
+select * from HoaDonBan
+select * from HoaDonBan where idBan = 1 and status = 0
+create proc Insert_ChitietHoaDon
+@idHoaDon int, @idDoUong int, @count int
+as
+begin
+	declare @isExistCTHoaDon int;
+	declare @soLuongDoUong int = 1;
+	select @isExistCTHoaDon = id, @soLuongDoUong = count from ChiTietHoaDonBan where idHoaDon = @idHoaDon and idDoUong = @idDoUong
+
+	if(@isExistCTHoaDon > 0)
+	begin
+	declare @newCount int = @soLuongDoUong + @count
+	if(@newCount > 0)
+	    UPDATE ChiTietHoaDonBan set count = @soLuongDoUong + @count where idDoUong = @idDoUong
+	else 
+		delete ChiTietHoaDonBan where idHoaDon = @idHoaDon and idDoUong = @idDoUong
+	end
+	else
+	begin
+	
+	insert ChiTietHoaDonBan(idHoaDon, idDoUong, count)
+	values (@idHoaDon, @idDoUong, @count)
+	end
+end
+go
+
+
+create PROCEDURE ChuyenBan
+    @idBan1 INT,
+    @idBan2 INT
+AS
+BEGIN
+    DECLARE @idHoaDon1 INT;
+    DECLARE @idHoaDon2 INT;
+
+    -- Lấy ID hóa đơn của bàn 1 và bàn 2
+    SELECT @idHoaDon1 = id FROM HoaDonBan WHERE idBan = @idBan1 AND status = 0;
+    SELECT @idHoaDon2 = id FROM HoaDonBan WHERE idBan = @idBan2 AND status = 0;
+
+    -- Nếu không có hóa đơn cho bàn 1, tạo hóa đơn mới
+    IF (@idHoaDon1 IS NULL)
+    BEGIN
+        INSERT INTO HoaDonBan (DateCheckIn, DateCheckOut, idBan, status)
+        VALUES (GETDATE(), NULL, @idBan1, 0);
+
+        SELECT @idHoaDon1 = MAX(id) FROM HoaDonBan WHERE idBan = @idBan1 AND status = 0;
+    END
+
+    -- Nếu không có hóa đơn cho bàn 2, tạo hóa đơn mới
+    IF (@idHoaDon2 IS NULL)
+    BEGIN
+        INSERT INTO HoaDonBan (DateCheckIn, DateCheckOut, idBan, status)
+        VALUES (GETDATE(), NULL, @idBan2, 0);
+
+        SELECT @idHoaDon2 = MAX(id) FROM HoaDonBan WHERE idBan = @idBan2 AND status = 0;
+    END
+
+    -- Tạo bảng tạm để lưu id của các chi tiết hóa đơn của bàn 2
+    SELECT id INTO #idCTHDTable FROM ChiTietHoaDonBan WHERE idHoaDon = @idHoaDon2;
+
+    -- Chuyển chi tiết hóa đơn từ bàn 1 sang bàn 2
+    UPDATE ChiTietHoaDonBan SET idHoaDon = @idHoaDon2 WHERE idHoaDon = @idHoaDon1;
+
+    -- Chuyển chi tiết hóa đơn từ bảng tạm về bàn 1
+    UPDATE ChiTietHoaDonBan SET idHoaDon = @idHoaDon1 WHERE id IN (SELECT id FROM #idCTHDTable);
+
+    -- Xóa bảng tạm
+    DROP TABLE #idCTHDTable;
+
+    -- Cập nhật trạng thái của bàn 1 và bàn 2
+    DECLARE @countCTHD1 INT;
+    DECLARE @countCTHD2 INT;
+
+    SELECT @countCTHD1 = COUNT(*) FROM ChiTietHoaDonBan WHERE idHoaDon = @idHoaDon1;
+    SELECT @countCTHD2 = COUNT(*) FROM ChiTietHoaDonBan WHERE idHoaDon = @idHoaDon2;
+
+    IF (@countCTHD1 > 0)
+        UPDATE Ban SET TrangThai = N'Đầy' WHERE id = @idBan1;
+    ELSE
+        UPDATE Ban SET TrangThai = N'Trống' WHERE id = @idBan1;
+
+    IF (@countCTHD2 > 0)
+        UPDATE Ban SET TrangThai = N'Đầy' WHERE id = @idBan2;
+    ELSE
+        UPDATE Ban SET TrangThai = N'Trống' WHERE id = @idBan2;
+END
 GO
 
--- Thêm dữ liệu mẫu cho bảng TaiKhoan
-INSERT INTO TaiKhoan (Ten, TenTK, MatKhau, Type)
-VALUES 
-(N'Đình Quân', 'maniac', '123456', 0),
-(N'Phong Nguyễn', 'phongn', '123456', 1)
-GO
+
+alter table HoaDonBan add thanhTien float
+
+create proc ThongKeDSHoaDonTheoNgay
+
+@checkIn Date, @checkOut date
+as
+begin
+select b.name , h.DateCheckIn , h.DateCheckOut,h.thanhTien, h.GiamGia, h.tongTien, n.TenNV
+from Ban as b, HoaDonBan as h, NhanVien as n
+where 
+	DateCheckIn >= @checkIn 
+	and DateCheckOut <= @checkOut
+	and h.status = 1 
+	and b.id = h.idBan 
+	and n.id = h.idNhanVien
+end
 
 
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Nguyễn Thị Mai', '0901234567', 'mainguyen@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Phạm Văn Hùng', '0902345678', 'hungpham@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Lê Thị Thu', '0903456789', 'thule@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Trần Quốc Toàn', '0904567890', 'toantran@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Hoàng Văn Hải', '0905678901', 'haihoang@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Võ Thị Hạnh', '0906789012', 'hanhvo@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Đặng Văn Tùng', '0907890123', 'tungdang@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Bùi Thị Lan', '0908901234', 'lanbui@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Ngô Văn Cường', '0909012345', 'cuongngo@example.com');
-INSERT INTO KhachHang (TenKH, SDTKH, emailKH) VALUES (N'Phan Thị Thu Hà', '0910123456', 'haphan@example.com');
-GO
 
-INSERT INTO HoaDon (DateCheckIn, DateCheckOut, idBan, status, idKH, idNV)
-VALUES 
-(GETDATE(), Getdate(), 1, 1, 1, 1)
-(GETDATE(), null, 1, 0, 1, 1),
-(GETDATE(), null, 2, 1, 6, 2),
-(GETDATE(), null, 3, 0, 7, 3),
-(GETDATE(), null, 4, 1, 8, 4),
-(GETDATE(), null, 5, 0, 9, 5),
-(GETDATE(), null, 6, 1, 10, 1),
-(GETDATE(), null, 7, 0, 11, 2),
-(GETDATE(), null, 8, 1, 12, 3),
-(GETDATE(), null, 9, 0, 13, 4),
-(GETDATE(), null, 10, 1, 14, 5);
 
-select * from HoaDon
--- Chèn dữ liệu vào bảng ChiTietHoaDonBan
-INSERT INTO ChiTietHoaDonBan (idHoaDon, idDoUong, count)
-VALUES 
--- Chi tiết hóa đơn số 1
-(1, 1, 2),  -- Cà phê đen x 2
-(1, 2, 1),  -- Trà đào x 1
 
--- Chi tiết hóa đơn số 2
-(2, 3, 3),  -- Pepsi x 3
+-- trigger
 
--- Chi tiết hóa đơn số 3
-(3, 1, 1),  -- Cà phê đen x 1
-(3, 2, 2),  -- Trà đào x 2
 
--- Chi tiết hóa đơn số 4
-(4, 3, 1),  -- Pepsi x 1
+create trigger CapNhatCTHD
+on ChiTietHoaDonBan for insert, update
+as
+begin
+	declare @idHoaDon int 
+	select @idHoaDon = idHoaDon from Inserted
+	Declare @idBan int 
+	select @idBan = idBan from HoaDonBan where id = @idHoaDon and status = 0
+	declare @count int 
+	select @count = count(*) from HoaDonBan where id = @idHoaDon
+	
+	if(@count >0)
+	update Ban set TrangThai = N'Đầy' where id = @idBan
+	else 
+	update Ban set TrangThai = N'Trống' where id = @idBan
+end
+go
 
--- Chi tiết hóa đơn số 5
-(5, 1, 1),  -- Cà phê đen x 1
-(5, 2, 1),  -- Trà đào x 1
-(5, 3, 2),  -- Pepsi x 2
 
--- Chi tiết hóa đơn số 6
-(6, 1, 2),  -- Cà phê đen x 2
-(6, 3, 1),  -- Pepsi x 1
+create trigger CapNhatHD
+on HoaDonBan for update
+as
+begin
+	declare @idHoaDon int
+	select @idHoaDon = id from Inserted
+	
+	Declare @idBan int 
+	select @idBan = idBan from HoaDonBan where id = @idHoaDon
 
--- Chi tiết hóa đơn số 7
-(7, 2, 3),  -- Trà đào x 3
+	declare @count int = 0
+	select @count = count(*) from HoaDonBan where @idBan = idBan and status = 0
+	if(@count = 0)
+	update Ban set TrangThai = N'Trống' where id = @idBan
+end
+go
 
--- Chi tiết hóa đơn số 8
-(8, 1, 1),  -- Cà phê đen x 1
 
--- Chi tiết hóa đơn số 9
-(9, 2, 2),  -- Trà đào x 2
 
--- Chi tiết hóa đơn số 10
-(10, 3, 1); -- Pepsi x 1
 
--- Kiểm tra dữ liệu trong bảng ChiTietHoaDonBan
-SELECT * FROM ChiTietHoaDonBan where idHoaDon = 3
-select * from HoaDon where idBan = 3
-select du.TenDoUong,ct.count, du.DonGia, du.DonGia*ct.count as ThanhTien  from ChiTietHoaDonBan as ct, HoaDon as hd, DoUong as du 
-where ct.idHoaDon = hd.id and ct.idDoUong = du.id and hd.status = 0 and hd.idBan = 3 
 
-select * from HoaDon
-select * from ChiTietHoaDonBan
-select * from Ban
+
+
+
+
+

@@ -68,7 +68,6 @@
             this.txbUserName.ReadOnly = true;
             this.txbUserName.Size = new System.Drawing.Size(386, 22);
             this.txbUserName.TabIndex = 1;
-            this.txbUserName.UseSystemPasswordChar = true;
             // 
             // UserName
             // 
@@ -95,7 +94,6 @@
             this.txbDisplayName.Name = "txbDisplayName";
             this.txbDisplayName.Size = new System.Drawing.Size(386, 22);
             this.txbDisplayName.TabIndex = 1;
-            this.txbDisplayName.UseSystemPasswordChar = true;
             // 
             // label1
             // 
