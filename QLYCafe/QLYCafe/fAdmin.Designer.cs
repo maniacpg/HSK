@@ -28,11 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcAdmin = new System.Windows.Forms.TabControl();
             this.tpBill = new System.Windows.Forms.TabPage();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtgvBill = new System.Windows.Forms.DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -57,7 +64,6 @@
             this.txbFoodID = new System.Windows.Forms.TextBox();
             this.UserName = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
-            this.btnReadFood = new System.Windows.Forms.Button();
             this.btnEditFood = new System.Windows.Forms.Button();
             this.btnDelFood = new System.Windows.Forms.Button();
             this.btnAddFood = new System.Windows.Forms.Button();
@@ -65,8 +71,6 @@
             this.dtgvDoUong = new System.Windows.Forms.DataGridView();
             this.tpFoodCategory = new System.Windows.Forms.TabPage();
             this.dtgvCategory = new System.Windows.Forms.DataGridView();
-            this.id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenDO = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel15 = new System.Windows.Forms.Panel();
             this.txbCategoryName = new System.Windows.Forms.TextBox();
@@ -75,7 +79,6 @@
             this.txbCategoryID = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.panel17 = new System.Windows.Forms.Panel();
-            this.btnShowCate = new System.Windows.Forms.Button();
             this.btnEditCate = new System.Windows.Forms.Button();
             this.btnDelCate = new System.Windows.Forms.Button();
             this.btnAddCate = new System.Windows.Forms.Button();
@@ -92,7 +95,6 @@
             this.tbTableID = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.panel18 = new System.Windows.Forms.Panel();
-            this.btnShowTable = new System.Windows.Forms.Button();
             this.btnEditTable = new System.Windows.Forms.Button();
             this.btnDelTable = new System.Windows.Forms.Button();
             this.btnAddTable = new System.Windows.Forms.Button();
@@ -113,21 +115,11 @@
             this.txbAccName = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.panel23 = new System.Windows.Forms.Panel();
-            this.btnShowAcc = new System.Windows.Forms.Button();
             this.btnEditAcc = new System.Windows.Forms.Button();
             this.btnDelAcc = new System.Windows.Forms.Button();
             this.btnAddAcc = new System.Windows.Forms.Button();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnInHD = new System.Windows.Forms.Button();
+            this.InHD1 = new QLYCafe.InHD();
             this.tcAdmin.SuspendLayout();
             this.tpBill.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -204,17 +196,13 @@
             this.dtgvBill.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvBill.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dtgvBill.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column10,
+            this.Column1,
+            this.Column7,
             this.Column2,
             this.Column3,
-            this.Column1,
-            this.Column8,
-            this.Column9,
-            this.Column11,
             this.Column4,
             this.Column6,
-            this.Column5,
-            this.Column7});
+            this.Column5});
             this.dtgvBill.Location = new System.Drawing.Point(3, 3);
             this.dtgvBill.Name = "dtgvBill";
             this.dtgvBill.RowHeadersWidth = 51;
@@ -223,10 +211,60 @@
             this.dtgvBill.TabIndex = 0;
             this.dtgvBill.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvBill_CellContentClick);
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "name";
+            this.Column1.HeaderText = "Tên bàn";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "TenNV";
+            this.Column7.HeaderText = "Nhân Viên";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "DateCheckIn";
+            this.Column2.HeaderText = "Ngày vào";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "DateCheckOut";
+            this.Column3.HeaderText = "Ngày ra";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "thanhTien";
+            this.Column4.HeaderText = "Tổng tiền";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "GiamGia";
+            this.Column6.HeaderText = "Giảm giá(%)";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "tongTien";
+            this.Column5.HeaderText = "Thành tiền";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            // 
             // panel1
             // 
             this.panel1.Controls.Add(this.label13);
             this.panel1.Controls.Add(this.label12);
+            this.panel1.Controls.Add(this.btnInHD);
             this.panel1.Controls.Add(this.btnViewBill);
             this.panel1.Controls.Add(this.dtpTo);
             this.panel1.Controls.Add(this.dtpFrom);
@@ -257,11 +295,11 @@
             // 
             // btnViewBill
             // 
-            this.btnViewBill.Location = new System.Drawing.Point(842, 17);
+            this.btnViewBill.Location = new System.Drawing.Point(728, 19);
             this.btnViewBill.Name = "btnViewBill";
             this.btnViewBill.Size = new System.Drawing.Size(89, 30);
             this.btnViewBill.TabIndex = 2;
-            this.btnViewBill.Text = "Thống Kê";
+            this.btnViewBill.Text = "Thống kê";
             this.btnViewBill.UseVisualStyleBackColor = true;
             this.btnViewBill.Click += new System.EventHandler(this.btnViewBill_Click);
             // 
@@ -312,6 +350,7 @@
             this.btnSearch.TabIndex = 1;
             this.btnSearch.Text = "Tìm";
             this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
             // txbSearchFoodName
             // 
@@ -319,7 +358,7 @@
             this.txbSearchFoodName.Name = "txbSearchFoodName";
             this.txbSearchFoodName.Size = new System.Drawing.Size(276, 22);
             this.txbSearchFoodName.TabIndex = 0;
-            this.txbSearchFoodName.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txbSearchFoodName.TextChanged += new System.EventHandler(this.txbSearchFoodName_TextChanged);
             // 
             // panel5
             // 
@@ -352,6 +391,7 @@
             this.nmFoodPrice.Name = "nmFoodPrice";
             this.nmFoodPrice.Size = new System.Drawing.Size(286, 22);
             this.nmFoodPrice.TabIndex = 1;
+            this.nmFoodPrice.ValueChanged += new System.EventHandler(this.nmFoodPrice_ValueChanged);
             // 
             // label3
             // 
@@ -379,6 +419,7 @@
             this.cbxFoodCategory.Name = "cbxFoodCategory";
             this.cbxFoodCategory.Size = new System.Drawing.Size(286, 24);
             this.cbxFoodCategory.TabIndex = 1;
+            this.cbxFoodCategory.SelectedIndexChanged += new System.EventHandler(this.cbxFoodCategory_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -403,7 +444,6 @@
             // 
             this.txbFoodName.Location = new System.Drawing.Point(89, 21);
             this.txbFoodName.Name = "txbFoodName";
-            this.txbFoodName.ReadOnly = true;
             this.txbFoodName.Size = new System.Drawing.Size(286, 22);
             this.txbFoodName.TabIndex = 1;
             this.txbFoodName.TextChanged += new System.EventHandler(this.txbFoodName_TextChanged);
@@ -432,7 +472,6 @@
             // 
             this.txbFoodID.Location = new System.Drawing.Point(89, 21);
             this.txbFoodID.Name = "txbFoodID";
-            this.txbFoodID.ReadOnly = true;
             this.txbFoodID.Size = new System.Drawing.Size(286, 22);
             this.txbFoodID.TabIndex = 1;
             // 
@@ -448,7 +487,6 @@
             // 
             // panel4
             // 
-            this.panel4.Controls.Add(this.btnReadFood);
             this.panel4.Controls.Add(this.btnEditFood);
             this.panel4.Controls.Add(this.btnDelFood);
             this.panel4.Controls.Add(this.btnAddFood);
@@ -457,21 +495,11 @@
             this.panel4.Size = new System.Drawing.Size(574, 80);
             this.panel4.TabIndex = 1;
             // 
-            // btnReadFood
-            // 
-            this.btnReadFood.Location = new System.Drawing.Point(465, 4);
-            this.btnReadFood.Name = "btnReadFood";
-            this.btnReadFood.Size = new System.Drawing.Size(92, 73);
-            this.btnReadFood.TabIndex = 0;
-            this.btnReadFood.Text = "Xem";
-            this.btnReadFood.UseVisualStyleBackColor = true;
-            this.btnReadFood.Click += new System.EventHandler(this.btnEditFood_Click);
-            // 
             // btnEditFood
             // 
-            this.btnEditFood.Location = new System.Drawing.Point(313, 3);
+            this.btnEditFood.Location = new System.Drawing.Point(219, 14);
             this.btnEditFood.Name = "btnEditFood";
-            this.btnEditFood.Size = new System.Drawing.Size(92, 73);
+            this.btnEditFood.Size = new System.Drawing.Size(136, 55);
             this.btnEditFood.TabIndex = 0;
             this.btnEditFood.Text = "Sửa";
             this.btnEditFood.UseVisualStyleBackColor = true;
@@ -479,21 +507,23 @@
             // 
             // btnDelFood
             // 
-            this.btnDelFood.Location = new System.Drawing.Point(155, 4);
+            this.btnDelFood.Location = new System.Drawing.Point(435, 14);
             this.btnDelFood.Name = "btnDelFood";
-            this.btnDelFood.Size = new System.Drawing.Size(92, 73);
+            this.btnDelFood.Size = new System.Drawing.Size(136, 55);
             this.btnDelFood.TabIndex = 0;
             this.btnDelFood.Text = "Xóa";
             this.btnDelFood.UseVisualStyleBackColor = true;
+            this.btnDelFood.Click += new System.EventHandler(this.btnDelFood_Click);
             // 
             // btnAddFood
             // 
-            this.btnAddFood.Location = new System.Drawing.Point(4, 4);
+            this.btnAddFood.Location = new System.Drawing.Point(3, 14);
             this.btnAddFood.Name = "btnAddFood";
-            this.btnAddFood.Size = new System.Drawing.Size(92, 73);
+            this.btnAddFood.Size = new System.Drawing.Size(136, 55);
             this.btnAddFood.TabIndex = 0;
             this.btnAddFood.Text = "Thêm";
             this.btnAddFood.UseVisualStyleBackColor = true;
+            this.btnAddFood.Click += new System.EventHandler(this.btnAddFood_Click);
             // 
             // panel3
             // 
@@ -531,37 +561,21 @@
             // 
             this.dtgvCategory.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dtgvCategory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dtgvCategory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.id,
-            this.TenDO});
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dtgvCategory.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dtgvCategory.DefaultCellStyle = dataGridViewCellStyle1;
             this.dtgvCategory.Location = new System.Drawing.Point(8, 95);
             this.dtgvCategory.Name = "dtgvCategory";
             this.dtgvCategory.RowHeadersWidth = 51;
             this.dtgvCategory.RowTemplate.Height = 24;
             this.dtgvCategory.Size = new System.Drawing.Size(568, 429);
             this.dtgvCategory.TabIndex = 4;
-            // 
-            // id
-            // 
-            this.id.DataPropertyName = "id";
-            this.id.HeaderText = "ID danh mục";
-            this.id.MinimumWidth = 6;
-            this.id.Name = "id";
-            // 
-            // TenDO
-            // 
-            this.TenDO.DataPropertyName = "TenDoUong";
-            this.TenDO.HeaderText = "Tên đồ uống";
-            this.TenDO.MinimumWidth = 6;
-            this.TenDO.Name = "TenDO";
+            this.dtgvCategory.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgvCategory_CellContentClick);
             // 
             // panel12
             // 
@@ -583,11 +597,11 @@
             // 
             // txbCategoryName
             // 
-            this.txbCategoryName.Location = new System.Drawing.Point(119, 21);
+            this.txbCategoryName.Location = new System.Drawing.Point(119, 23);
             this.txbCategoryName.Name = "txbCategoryName";
-            this.txbCategoryName.ReadOnly = true;
             this.txbCategoryName.Size = new System.Drawing.Size(256, 22);
             this.txbCategoryName.TabIndex = 1;
+            this.txbCategoryName.TextChanged += new System.EventHandler(this.txbCategoryName_TextChanged);
             // 
             // label6
             // 
@@ -612,7 +626,6 @@
             // 
             this.txbCategoryID.Location = new System.Drawing.Point(119, 21);
             this.txbCategoryID.Name = "txbCategoryID";
-            this.txbCategoryID.ReadOnly = true;
             this.txbCategoryID.Size = new System.Drawing.Size(256, 22);
             this.txbCategoryID.TabIndex = 1;
             // 
@@ -628,7 +641,6 @@
             // 
             // panel17
             // 
-            this.panel17.Controls.Add(this.btnShowCate);
             this.panel17.Controls.Add(this.btnEditCate);
             this.panel17.Controls.Add(this.btnDelCate);
             this.panel17.Controls.Add(this.btnAddCate);
@@ -637,41 +649,35 @@
             this.panel17.Size = new System.Drawing.Size(574, 80);
             this.panel17.TabIndex = 5;
             // 
-            // btnShowCate
-            // 
-            this.btnShowCate.Location = new System.Drawing.Point(465, 4);
-            this.btnShowCate.Name = "btnShowCate";
-            this.btnShowCate.Size = new System.Drawing.Size(92, 73);
-            this.btnShowCate.TabIndex = 0;
-            this.btnShowCate.Text = "Xem";
-            this.btnShowCate.UseVisualStyleBackColor = true;
-            // 
             // btnEditCate
             // 
-            this.btnEditCate.Location = new System.Drawing.Point(313, 3);
+            this.btnEditCate.Location = new System.Drawing.Point(219, 14);
             this.btnEditCate.Name = "btnEditCate";
-            this.btnEditCate.Size = new System.Drawing.Size(92, 73);
+            this.btnEditCate.Size = new System.Drawing.Size(136, 55);
             this.btnEditCate.TabIndex = 0;
             this.btnEditCate.Text = "Sửa";
             this.btnEditCate.UseVisualStyleBackColor = true;
+            this.btnEditCate.Click += new System.EventHandler(this.btnEditCate_Click);
             // 
             // btnDelCate
             // 
-            this.btnDelCate.Location = new System.Drawing.Point(155, 4);
+            this.btnDelCate.Location = new System.Drawing.Point(433, 14);
             this.btnDelCate.Name = "btnDelCate";
-            this.btnDelCate.Size = new System.Drawing.Size(92, 73);
+            this.btnDelCate.Size = new System.Drawing.Size(136, 55);
             this.btnDelCate.TabIndex = 0;
             this.btnDelCate.Text = "Xóa";
             this.btnDelCate.UseVisualStyleBackColor = true;
+            this.btnDelCate.Click += new System.EventHandler(this.btnDelCate_Click);
             // 
             // btnAddCate
             // 
-            this.btnAddCate.Location = new System.Drawing.Point(4, 4);
+            this.btnAddCate.Location = new System.Drawing.Point(3, 14);
             this.btnAddCate.Name = "btnAddCate";
-            this.btnAddCate.Size = new System.Drawing.Size(92, 73);
+            this.btnAddCate.Size = new System.Drawing.Size(136, 55);
             this.btnAddCate.TabIndex = 0;
             this.btnAddCate.Text = "Thêm";
             this.btnAddCate.UseVisualStyleBackColor = true;
+            this.btnAddCate.Click += new System.EventHandler(this.btnAddCate_Click);
             // 
             // tpTable
             // 
@@ -695,6 +701,7 @@
             this.dgvTable.RowTemplate.Height = 24;
             this.dgvTable.Size = new System.Drawing.Size(568, 423);
             this.dgvTable.TabIndex = 7;
+            this.dgvTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTable_CellContentClick);
             // 
             // panel11
             // 
@@ -722,6 +729,7 @@
             this.cbTableStatus.Name = "cbTableStatus";
             this.cbTableStatus.Size = new System.Drawing.Size(256, 24);
             this.cbTableStatus.TabIndex = 1;
+            this.cbTableStatus.SelectedIndexChanged += new System.EventHandler(this.cbTableStatus_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -746,7 +754,6 @@
             // 
             this.tbTableName.Location = new System.Drawing.Point(119, 21);
             this.tbTableName.Name = "tbTableName";
-            this.tbTableName.ReadOnly = true;
             this.tbTableName.Size = new System.Drawing.Size(256, 22);
             this.tbTableName.TabIndex = 1;
             // 
@@ -773,7 +780,6 @@
             // 
             this.tbTableID.Location = new System.Drawing.Point(119, 21);
             this.tbTableID.Name = "tbTableID";
-            this.tbTableID.ReadOnly = true;
             this.tbTableID.Size = new System.Drawing.Size(256, 22);
             this.tbTableID.TabIndex = 1;
             // 
@@ -789,7 +795,6 @@
             // 
             // panel18
             // 
-            this.panel18.Controls.Add(this.btnShowTable);
             this.panel18.Controls.Add(this.btnEditTable);
             this.panel18.Controls.Add(this.btnDelTable);
             this.panel18.Controls.Add(this.btnAddTable);
@@ -798,41 +803,35 @@
             this.panel18.Size = new System.Drawing.Size(574, 80);
             this.panel18.TabIndex = 8;
             // 
-            // btnShowTable
-            // 
-            this.btnShowTable.Location = new System.Drawing.Point(465, 4);
-            this.btnShowTable.Name = "btnShowTable";
-            this.btnShowTable.Size = new System.Drawing.Size(92, 73);
-            this.btnShowTable.TabIndex = 0;
-            this.btnShowTable.Text = "Xem";
-            this.btnShowTable.UseVisualStyleBackColor = true;
-            // 
             // btnEditTable
             // 
-            this.btnEditTable.Location = new System.Drawing.Point(313, 3);
+            this.btnEditTable.Location = new System.Drawing.Point(219, 14);
             this.btnEditTable.Name = "btnEditTable";
-            this.btnEditTable.Size = new System.Drawing.Size(92, 73);
+            this.btnEditTable.Size = new System.Drawing.Size(136, 55);
             this.btnEditTable.TabIndex = 0;
             this.btnEditTable.Text = "Sửa";
             this.btnEditTable.UseVisualStyleBackColor = true;
+            this.btnEditTable.Click += new System.EventHandler(this.btnEditTable_Click);
             // 
             // btnDelTable
             // 
-            this.btnDelTable.Location = new System.Drawing.Point(155, 4);
+            this.btnDelTable.Location = new System.Drawing.Point(431, 14);
             this.btnDelTable.Name = "btnDelTable";
-            this.btnDelTable.Size = new System.Drawing.Size(92, 73);
+            this.btnDelTable.Size = new System.Drawing.Size(136, 55);
             this.btnDelTable.TabIndex = 0;
             this.btnDelTable.Text = "Xóa";
             this.btnDelTable.UseVisualStyleBackColor = true;
+            this.btnDelTable.Click += new System.EventHandler(this.btnDelTable_Click);
             // 
             // btnAddTable
             // 
-            this.btnAddTable.Location = new System.Drawing.Point(4, 4);
+            this.btnAddTable.Location = new System.Drawing.Point(3, 14);
             this.btnAddTable.Name = "btnAddTable";
-            this.btnAddTable.Size = new System.Drawing.Size(92, 73);
+            this.btnAddTable.Size = new System.Drawing.Size(136, 55);
             this.btnAddTable.TabIndex = 0;
             this.btnAddTable.Text = "Thêm";
             this.btnAddTable.UseVisualStyleBackColor = true;
+            this.btnAddTable.Click += new System.EventHandler(this.btnAddTable_Click);
             // 
             // tpAccount
             // 
@@ -971,7 +970,6 @@
             // 
             this.txbAccName.Location = new System.Drawing.Point(119, 21);
             this.txbAccName.Name = "txbAccName";
-            this.txbAccName.ReadOnly = true;
             this.txbAccName.Size = new System.Drawing.Size(256, 22);
             this.txbAccName.TabIndex = 1;
             // 
@@ -987,7 +985,6 @@
             // 
             // panel23
             // 
-            this.panel23.Controls.Add(this.btnShowAcc);
             this.panel23.Controls.Add(this.btnEditAcc);
             this.panel23.Controls.Add(this.btnDelAcc);
             this.panel23.Controls.Add(this.btnAddAcc);
@@ -996,30 +993,20 @@
             this.panel23.Size = new System.Drawing.Size(574, 80);
             this.panel23.TabIndex = 8;
             // 
-            // btnShowAcc
-            // 
-            this.btnShowAcc.Location = new System.Drawing.Point(465, 4);
-            this.btnShowAcc.Name = "btnShowAcc";
-            this.btnShowAcc.Size = new System.Drawing.Size(92, 73);
-            this.btnShowAcc.TabIndex = 0;
-            this.btnShowAcc.Text = "Xem";
-            this.btnShowAcc.UseVisualStyleBackColor = true;
-            this.btnShowAcc.Click += new System.EventHandler(this.button1_Click);
-            // 
             // btnEditAcc
             // 
-            this.btnEditAcc.Location = new System.Drawing.Point(313, 3);
+            this.btnEditAcc.Location = new System.Drawing.Point(219, 14);
             this.btnEditAcc.Name = "btnEditAcc";
-            this.btnEditAcc.Size = new System.Drawing.Size(92, 73);
+            this.btnEditAcc.Size = new System.Drawing.Size(136, 55);
             this.btnEditAcc.TabIndex = 0;
             this.btnEditAcc.Text = "Sửa";
             this.btnEditAcc.UseVisualStyleBackColor = true;
             // 
             // btnDelAcc
             // 
-            this.btnDelAcc.Location = new System.Drawing.Point(155, 4);
+            this.btnDelAcc.Location = new System.Drawing.Point(431, 14);
             this.btnDelAcc.Name = "btnDelAcc";
-            this.btnDelAcc.Size = new System.Drawing.Size(92, 73);
+            this.btnDelAcc.Size = new System.Drawing.Size(136, 55);
             this.btnDelAcc.TabIndex = 0;
             this.btnDelAcc.Text = "Xóa";
             this.btnDelAcc.UseVisualStyleBackColor = true;
@@ -1027,90 +1014,23 @@
             // 
             // btnAddAcc
             // 
-            this.btnAddAcc.Location = new System.Drawing.Point(4, 4);
+            this.btnAddAcc.Location = new System.Drawing.Point(3, 14);
             this.btnAddAcc.Name = "btnAddAcc";
-            this.btnAddAcc.Size = new System.Drawing.Size(92, 73);
+            this.btnAddAcc.Size = new System.Drawing.Size(136, 55);
             this.btnAddAcc.TabIndex = 0;
             this.btnAddAcc.Text = "Thêm";
             this.btnAddAcc.UseVisualStyleBackColor = true;
             this.btnAddAcc.Click += new System.EventHandler(this.btnAddAcc_Click);
             // 
-            // Column10
+            // btnInHD
             // 
-            this.Column10.DataPropertyName = "ID Hóa Đơn";
-            this.Column10.HeaderText = "ID hóa đơn";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "Ngày Check-In";
-            this.Column2.HeaderText = "Thời gian vào";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "Ngày Check-Out";
-            this.Column3.HeaderText = "Thời gian ra";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "Tên Bàn";
-            this.Column1.HeaderText = "Tên bàn";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "Tên Đồ Uống";
-            this.Column8.HeaderText = "Tên đồ uống";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "Số Lượng";
-            this.Column9.HeaderText = "Số lượng";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "Đơn Giá";
-            this.Column11.HeaderText = "Đơn Giá";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "Thành Tiền";
-            this.Column4.HeaderText = "Tổng tiền";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "Giảm Giá";
-            this.Column6.HeaderText = "Giảm giá(%)";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "Tổng Tiền";
-            this.Column5.HeaderText = "Thành tiền";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "Tên Nhân Viên";
-            this.Column7.HeaderText = "Nhân Viên";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
+            this.btnInHD.Location = new System.Drawing.Point(838, 19);
+            this.btnInHD.Name = "btnInHD";
+            this.btnInHD.Size = new System.Drawing.Size(89, 30);
+            this.btnInHD.TabIndex = 2;
+            this.btnInHD.Text = "In hóa đơn";
+            this.btnInHD.UseVisualStyleBackColor = true;
+            this.btnInHD.Click += new System.EventHandler(this.btnInHD_Click);
             // 
             // fAdmin
             // 
@@ -1199,7 +1119,6 @@
         private System.Windows.Forms.Button btnAddFood;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.TextBox txbSearchFoodName;
-        private System.Windows.Forms.Button btnReadFood;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.TextBox txbFoodID;
         private System.Windows.Forms.Label UserName;
@@ -1222,7 +1141,6 @@
         private System.Windows.Forms.TextBox txbCategoryID;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Button btnShowCate;
         private System.Windows.Forms.Button btnEditCate;
         private System.Windows.Forms.Button btnDelCate;
         private System.Windows.Forms.Button btnAddCate;
@@ -1238,7 +1156,6 @@
         private System.Windows.Forms.TextBox tbTableID;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.Button btnShowTable;
         private System.Windows.Forms.Button btnEditTable;
         private System.Windows.Forms.Button btnDelTable;
         private System.Windows.Forms.Button btnAddTable;
@@ -1251,7 +1168,6 @@
         private System.Windows.Forms.TextBox txbAccName;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panel23;
-        private System.Windows.Forms.Button btnShowAcc;
         private System.Windows.Forms.Button btnEditAcc;
         private System.Windows.Forms.Button btnDelAcc;
         private System.Windows.Forms.Button btnAddAcc;
@@ -1262,20 +1178,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ten;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenTK;
         private System.Windows.Forms.DataGridViewTextBoxColumn loaiTK;
-        private System.Windows.Forms.DataGridViewTextBoxColumn id;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenDO;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.Button btnInHD;
+        private InHD InHD1;
     }
 }

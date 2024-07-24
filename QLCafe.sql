@@ -49,6 +49,7 @@ CREATE TABLE TaiKhoan
 )
 GO
 ALTER TABLE TaiKhoan
+ADD Ten NVARCHAR(100)
 ADD idNhanVien INT;
 
 ALTER TABLE TaiKhoan
@@ -148,8 +149,6 @@ CREATE TABLE HoaDonBan
     
 )
 GO
-delete HoaDonBan
-delete ChiTietHoaDonBan
 select * from HoaDonBan
 ALTER TABLE HoaDonBan
 ADD idNhanVien INT;
@@ -157,19 +156,6 @@ ADD idNhanVien INT;
 ALTER TABLE HoaDonBan
 ADD CONSTRAINT FK_HoaDonBan_NhanVien
 FOREIGN KEY (idNhanVien) REFERENCES NhanVien(id);
-
-ALTER TABLE HoaDonBan
-DROP CONSTRAINT DF__HoaDonBan__DateC__5AEE82B9;
-
-ALTER TABLE HoaDonBan
-ALTER COLUMN DateCheckIn DATETIME not null ;
-
-ALTER TABLE HoaDonBan
-ADD CONSTRAINT DF_HoaDonBan_DateCheckIn
-DEFAULT GETDATE() FOR DateCheckIn;
-
-ALTER TABLE HoaDonBan
-ALTER COLUMN DateCheckOut DATETIME;
 
 alter table HoaDonBan add GiamGia int
 update HoaDonBan set GiamGia = 0
@@ -548,180 +534,27 @@ GO
 
 
 alter table HoaDonBan add thanhTien float
-
 alter table HoaDonBan add tongTien float
 
-ALTER PROCEDURE ThongKeDSHoaDonTheoNgay
-    @checkIn DATE,
-    @checkOut DATE
-AS
-BEGIN
-    ;WITH HoaDonCT AS (
-        SELECT 
-            h.id AS [ID Hóa Đơn],
-            b.name AS [Tên Bàn], 
-            h.DateCheckIn, 
-            h.DateCheckOut,
-            n.TenNV,
-            du.TenDoUong,
-            ct.count AS [Số Lượng],
-            du.DonGia AS [Đơn Giá],
-            h.thanhTien,
-            h.GiamGia,
-            h.tongTien,
-            ROW_NUMBER() OVER (PARTITION BY h.id ORDER BY du.TenDoUong) AS RowNum
-        FROM 
-            HoaDonBan AS h
-            INNER JOIN Ban AS b ON h.idBan = b.id
-            INNER JOIN NhanVien AS n ON h.idNhanVien = n.id
-            INNER JOIN ChiTietHoaDonBan AS ct ON h.id = ct.idHoaDon
-            INNER JOIN DoUong AS du ON ct.idDoUong = du.id
-        WHERE 
-            h.DateCheckIn >= @checkIn 
-            AND h.DateCheckOut <= @checkOut
-            AND h.status = 1
-    ),
-    HoaDonCTWithSort AS (
-        SELECT
-            [ID Hóa Đơn],
-            [Tên Bàn],
-            DateCheckIn AS [Ngày Check-In],
-            DateCheckOut AS [Ngày Check-Out],
-            TenNV AS [Tên Nhân Viên],
-            TenDoUong AS [Tên Đồ Uống],
-            [Số Lượng],
-            [Đơn Giá],
-            thanhTien as [Thành Tiền] ,
-            GiamGia AS [Giảm Giá],
-            tongTien AS [Tổng Tiền],
-            1 AS SortOrder,
-            CAST(0 AS BIT) AS IsGrandTotal
-        FROM HoaDonCT
-        WHERE RowNum = 1
-        UNION ALL
-        SELECT
-            [ID Hóa Đơn],
-            NULL,
-            NULL,
-            NULL,
-            NULL,
-            TenDoUong,
-            [Số Lượng],
-            [Đơn Giá],
-            null,
-            NULL,
-            NULL,
-            2 AS SortOrder,
-            CAST(0 AS BIT) AS IsGrandTotal
-        FROM HoaDonCT
-        WHERE RowNum > 1
-    ),
-    TongCong AS (
-        SELECT
-            NULL AS [ID Hóa Đơn],
-            NULL AS [Tên Bàn],
-            NULL AS [Ngày Check-In],
-            NULL AS [Ngày Check-Out],
-            NULL AS [Tên Nhân Viên],
-            N'TỔNG CỘNG:' AS [Tên Đồ Uống],
-            NULL AS [Số Lượng],
-            NULL AS [Đơn Giá],
-            NULL AS [Thành Tiền],
-            NULL AS [Giảm Giá],
-            SUM(tongTien) AS [Tổng Tiền],
-            3 AS SortOrder,
-            CAST(1 AS BIT) AS IsGrandTotal
-        FROM HoaDonCT
-        WHERE RowNum = 1
-    )
-    SELECT 
-        [ID Hóa Đơn],
-        [Tên Bàn],
-        [Ngày Check-In],
-        [Ngày Check-Out],
-        [Tên Nhân Viên],
-        [Tên Đồ Uống],
-        [Số Lượng],
-        [Đơn Giá],
-        [Thành Tiền],
-        [Giảm Giá],
-        [Tổng Tiền]
-    FROM (
-        SELECT *, ROW_NUMBER() OVER (ORDER BY IsGrandTotal, [ID Hóa Đơn], SortOrder, [Tên Nhân Viên], [Tên Bàn], [Ngày Check-In], [Ngày Check-Out], [Tên Đồ Uống]) AS RowNum
-        FROM (
-            SELECT * FROM HoaDonCTWithSort
-            UNION ALL
-            SELECT * FROM TongCong
-        ) AS CombinedResults
-    ) AS SortedResults
-    ORDER BY RowNum;
-END
+create proc ThongKeDSHoaDonTheoNgay
 
-
-EXEC ThongKeDSHoaDonTheoNgay
-    @checkIn = '2024-07-01',  -- Thay thế bằng ngày bắt đầu mong muốn
-    @checkOut = '2024-07-31'; -- Thay thế bằng ngày kết thúc mong muốn
-
-select * from ChiTietHoaDonBan
-
-select * from HoaDonBan
-
-delete ChiTietHoaDonBan
-delete HoaDonBan
-alter PROC InHoaDon
-    @idBan INT
-AS
-BEGIN
-    -- Lấy ID của hóa đơn có ID lớn nhất
-    DECLARE @latestHoaDonId INT;
-
-    SELECT @latestHoaDonId = MAX(hd.id)
-    FROM HoaDonBan AS hd
-    WHERE hd.idBan = @idBan
-    AND hd.status = 1;
-
-    -- Truy vấn thông tin của hóa đơn với ID lớn nhất
-    ;WITH CTE AS (
-        SELECT 
-            nv.TenNV, 
-            b.name, 
-            hd.thanhTien,  
-            hd.GiamGia ,
-            hd.tongTien ,
-            du.TenDoUong , 
-            ct.count , 
-            du.DonGia ,
-			hd.DateCheckOut,
-            ROW_NUMBER() OVER (PARTITION BY hd.id ORDER BY du.TenDoUong) AS RowNum
-        FROM 
-            HoaDonBan AS hd
-            INNER JOIN ChiTietHoaDonBan AS ct ON hd.id = ct.idHoaDon
-            INNER JOIN DoUong AS du ON ct.idDoUong = du.id
-            INNER JOIN Ban AS b ON hd.idBan = b.id
-            INNER JOIN NhanVien AS nv ON hd.idNhanVien = nv.id
-        WHERE 
-            hd.id = @latestHoaDonId
-    )
-    SELECT 
-        CASE WHEN RowNum = 1 THEN TenNV ELSE NULL END AS TenNV,
-        CASE WHEN RowNum = 1 THEN name ELSE NULL END AS name,
-        CASE WHEN RowNum = 1 THEN thanhTien ELSE NULL END AS thanhTien,
-        CASE WHEN RowNum = 1 THEN GiamGia ELSE NULL END AS GiamGia,
-        CASE WHEN RowNum = 1 THEN tongTien ELSE NULL END AS tongTien,
-        TenDoUong, 
-        count, 
-        DonGia, 
-		DateCheckOut
-    FROM CTE
-    ORDER BY TenDoUong;
-END
+@checkIn Date, @checkOut date
+as
+begin
+select b.name , h.DateCheckIn , h.DateCheckOut,h.thanhTien, h.GiamGia, h.tongTien, n.TenNV
+from Ban as b, HoaDonBan as h, NhanVien as n
+where 
+	DateCheckIn >= @checkIn 
+	and DateCheckOut <= @checkOut
+	and h.status = 1 
+	and b.id = h.idBan 
+	and n.id = h.idNhanVien
+end
+GO
 
 
 
 
-exec InHoaDon @idBan = 6
-select * from HoaDonBan
-Select * from ChiTietHoaDonBan
 -- trigger
 
 
@@ -761,20 +594,12 @@ begin
 end
 go
 
-select * from NhanVien
-
-SELECT idNhanVien FROM TaiKhoan WHERE TenTK = 'kd'
-SELECT * FROM NhanVien WHERE id = 1
-create proc Select_NVbyID
-@idNhanVien int
-as
-begin
-select * from NhanVien where id = @idNhanVien
-end 
-
-exec Select_NVbyID @idNhanVien = 1
 
 
-SELECT idNhanVien FROM TaiKhoan WHERE TenTK = 'kd'
 
-select * from HoaDonBan
+
+
+
+
+
+

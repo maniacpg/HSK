@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,9 +36,18 @@ namespace QLYCafe.DAO
         {
             try
             {
-                DataProvider.Instance.ExecuteNonQuery("Insert_ChitietHoaDon @idHoaDon, @idDoUong, @count", new object[] { idHoaDon, idDoUong, count });
+                string query = "Insert_ChitietHoaDon @idHoaDon, @idDoUong, @count";
+                SqlParameter[] parameters = new SqlParameter[]
+                {
+            new SqlParameter("@idHoaDon", SqlDbType.Int) { Value = idHoaDon },
+            new SqlParameter("@idDoUong", SqlDbType.Int) { Value = idDoUong },
+            new SqlParameter("@count", SqlDbType.Int) { Value = count }
+                };
+
+                DataProvider.Instance.ExecuteNonQuery(query, parameters);
             }
-            catch (Exception e) {
+            catch (Exception e)
+            {
                 MessageBox.Show("Lỗi: " + e.Message);
             }
         }

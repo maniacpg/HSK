@@ -225,7 +225,6 @@
             this.Name = "fAccountProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Tai Khoan";
-            this.Load += new System.EventHandler(this.fAccountProfile_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);

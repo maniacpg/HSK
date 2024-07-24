@@ -1,19 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.UI.WebControls;
 using System.Windows.Forms;
 
 namespace QLYCafe.DAO
 {
     internal class DataProvider
     {
-        private string connectionString = ConfigurationManager.ConnectionStrings["CafeDatabase"].ConnectionString;
+        private static string connectionString = ConfigurationManager.ConnectionStrings["CafeDatabase"].ConnectionString;
 
         private static DataProvider instance;
 
@@ -25,106 +20,52 @@ namespace QLYCafe.DAO
 
         private DataProvider() { }
 
-        public DataTable ExecuteQuery(string query, object[] parameter = null)
+        public DataTable ExecuteQuery(string query, SqlParameter[] parameters = null)
         {
             DataTable data = new DataTable();
-            
-                using (SqlConnection conn = new SqlConnection(connectionString))
-                {
-                    conn.Open();
-                    SqlCommand cmd = new SqlCommand(query, conn);
-
-                    if (parameter != null)
-                    {
-                        string[] listPara = query.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-                        int i = 0;
-                        foreach (string item in listPara)
-                        {
-                            if (item.Contains('@'))
-                            {
-                                cmd.Parameters.AddWithValue(item, parameter[i]);
-                                i++;
-                            }
-                        }
-                    }
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(cmd);
-                    adapter.Fill(data);
-                    conn.Close();
-                }
-                return data;
-            
-            
-        }
-
-        public int ExecuteNonQuery(string query, object[] parameter = null)
-        {
-            int data = 0;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
-            {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.CommandType = CommandType.Text;
-                if (parameter != null)
-                {
-                    string[] listPara = query.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-                    int i = 0;
-                    foreach (string item in listPara)
-                    {
-                        if (item.Contains('@'))
-                        {
-                            cmd.Parameters.AddWithValue(item, parameter[i]);
-                            i++;
-                        }
-                    }
-                }
-
-                data = cmd.ExecuteNonQuery();
-                conn.Close();
-            }
-
-            return data;
-        }
-
-
-        public object ExecuteScalar(string query, object[] parameters = null)
-        {
-            object result = null;
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
+                    // Thêm các tham số vào SqlCommand
                     if (parameters != null)
                     {
-                        string[] listPara = query.Split(new char[] { ' ', ',' }, StringSplitOptions.RemoveEmptyEntries);
-                        int i = 0;
-                        foreach (string item in listPara)
-                        {
-                            if (item.Contains('@'))
-                            {
-                                cmd.Parameters.AddWithValue(item, parameters[i]);
-                                i++;
-                            }
-                        }
+                        cmd.Parameters.AddRange(parameters);
                     }
 
-                    try
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
-                        result = cmd.ExecuteScalar();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Lỗi khi thực thi câu lệnh SQL: " + ex.Message);
+                        adapter.Fill(data);
                     }
                 }
             }
 
-            return result;
+            return data;
+        }
+
+        public int ExecuteNonQuery(string query, SqlParameter[] parameters)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddRange(parameters);
+                connection.Open();
+                return command.ExecuteNonQuery();
+            }
         }
 
 
+        public object ExecuteScalar(string query, SqlParameter[] parameters)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddRange(parameters);
+                connection.Open();
+                return command.ExecuteScalar();
+            }
+        }
     }
 }

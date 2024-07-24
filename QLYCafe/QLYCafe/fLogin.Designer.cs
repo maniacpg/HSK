@@ -98,7 +98,6 @@ namespace QLYCafe
             this.txbUserName.Name = "txbUserName";
             this.txbUserName.Size = new System.Drawing.Size(386, 22);
             this.txbUserName.TabIndex = 1;
-            this.txbUserName.Text = "kd";
             // 
             // UserName
             // 
@@ -126,7 +125,6 @@ namespace QLYCafe
             this.txbPassWord.Name = "txbPassWord";
             this.txbPassWord.Size = new System.Drawing.Size(386, 22);
             this.txbPassWord.TabIndex = 2;
-            this.txbPassWord.Text = "1";
             this.txbPassWord.UseSystemPasswordChar = true;
             // 
             // PassWord

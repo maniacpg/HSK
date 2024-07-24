@@ -2,9 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace QLYCafe.DAO
 {
@@ -36,7 +38,24 @@ namespace QLYCafe.DAO
         }
         public void ChuyenBan(int id1, int id2)
         {
-            DataProvider.Instance.ExecuteQuery("ChuyenBan @idBan1, @idBan2", new object[] {id1, id2});
+            string query = "ChuyenBan @idBan1, @idBan2";
+
+            // Định nghĩa các tham số SQL
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@idBan1", SqlDbType.Int) { Value = id1 },
+        new SqlParameter("@idBan2", SqlDbType.Int) { Value = id2 }
+            };
+
+            try
+            {
+                // Thực thi câu lệnh SQL
+                DataProvider.Instance.ExecuteQuery(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
     }
 }

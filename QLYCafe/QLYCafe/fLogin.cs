@@ -31,8 +31,7 @@ namespace QLYCafe
             {
                 if (Login(userName, passWord))
                 {
-                    Account loginAcc = AccountDAO.Instance.GetAccountByUserName(userName);                    
-                    
+                    Account loginAcc = AccountDAO.Instance.GetAccountByUserName(userName);
                     fTableManager f = new fTableManager(loginAcc);
                     this.Hide();
                     f.ShowDialog();

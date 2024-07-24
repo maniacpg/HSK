@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Menu = QLYCafe.DTO.Menu;
 
 namespace QLYCafe
@@ -41,7 +40,7 @@ namespace QLYCafe
             adminToolStripMenuItem.Enabled = type == 1;
            tàiKhoảnToolStripMenuItem.Text += " (" + LoginAcc.Username + ")";
         }
-        public string AccName(Account account)
+        public string AccName(Account Acc)
         {
             string tentk = LoginAcc.Username;
             return tentk;
@@ -129,10 +128,6 @@ namespace QLYCafe
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAccountProfile f = new fAccountProfile(loginAcc);
-            Account account = GetCurrentAccount();
-            string tenTK = AccName(account);
-            NhanVienDAO.Instance.GetIDNhanVienByTenTK(tenTK);
-            NhanVienDAO.Instance.GetNhanVienNameByCurrentAccount(tenTK);
             f.ShowDialog();
         }
 
@@ -177,21 +172,29 @@ namespace QLYCafe
                 Table table = lsvBill.Tag as Table;
                 int idHoaDon = HoaDonDAO.Instance.LayIDHoaDonChuaThanhToan(table.ID);
                 int giamgia = (int)nmDiscount.Value;
-                double thanhTien = Convert.ToDouble(txbTongTien.Text.Split(',')[0]);
+
+                // Loại bỏ các ký tự không hợp lệ và chuyển đổi giá trị từ txbTongTien
+                string tongTienText = txbTongTien.Text.Replace("$", "").Replace(",", "").Replace(".", "").Trim();
+                if (!double.TryParse(tongTienText, out double thanhTien))
+                {
+                    MessageBox.Show("Giá trị tổng tiền không hợp lệ: " + tongTienText, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Chia lại giá trị để khớp với số nguyên vị trí của số tiền (từ nghìn đến đồng)
+                thanhTien /= 100;
+
                 double tongTien = thanhTien - (thanhTien / 100) * giamgia;
 
-                Account account = GetCurrentAccount(); 
-                string tenTK = AccName(account);   
+                Account account = GetCurrentAccount();
+                string tenTK = AccName(account);
 
                 if (idHoaDon != -1)
                 {
-                    if (MessageBox.Show("Xác nhận thanh toán!", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show(string.Format("Bạn có chắc chắn muốn thanh toán hóa đơn cho {0}\n Thành tiền - (Thành tiền / 100) x Giảm giá = {1:N0} - ({1:N0} / 100) x {2} = {3:N0}", table.Name, thanhTien, giamgia, tongTien), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         HoaDonDAO.Instance.CheckOut(idHoaDon, giamgia, (float)thanhTien, (float)tongTien, tenTK);
                         ShowHoaDon(table.ID);
-                        fHoaDon hd = new fHoaDon();
-                        hd.Show();
-                        hd.ShowHD("InHoaDon", table.ID);
                     }
                 }
                 else
@@ -282,11 +285,6 @@ namespace QLYCafe
         }
 
         private void txbTongTien_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
         {
 
         }

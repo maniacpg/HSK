@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -27,25 +28,46 @@ namespace QLYCafe.DAO
 
         public int LayIDHoaDonChuaThanhToan(int id)
         {
-            DataTable data = DataProvider.Instance.ExecuteQuery("select * from HoaDonBan where idBan = " + id + " and status = 0");
+            string query = "SELECT * FROM HoaDonBan WHERE idBan = @idBan AND status = 0";
+
+            // Định nghĩa tham số SQL
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@idBan", SqlDbType.Int) { Value = id }
+            };
+
+            // Thực thi câu lệnh SQL và lấy dữ liệu
+            DataTable data = DataProvider.Instance.ExecuteQuery(query, parameters);
+
             if (data.Rows.Count > 0)
             {
                 HoaDon hd = new HoaDon(data.Rows[0]);
                 return hd.Id;
             }
+
             return -1;
         }
+
         public void InsertHoaDon(int id)
         {
-            DataProvider.Instance.ExecuteNonQuery("Insert_HoaDonBan @idBan", new object[] { id });
-            
+            string query = "Insert_HoaDonBan @idBan";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@idBan", SqlDbType.Int) { Value = id }
+            };
+
+            DataProvider.Instance.ExecuteNonQuery(query, parameters);
+
         }
 
         public int GetMaxIdHoaDon()
         {
             try
             {
-                object result = DataProvider.Instance.ExecuteScalar("SELECT MAX(id) FROM HoaDonBan");
+                string query = "SELECT MAX(id) FROM HoaDonBan";
+
+                // Không có tham số cho truy vấn này
+                object result = DataProvider.Instance.ExecuteScalar(query, new SqlParameter[] { });
 
                 if (result != DBNull.Value && result != null)
                 {
@@ -66,20 +88,61 @@ namespace QLYCafe.DAO
 
         public void CheckOut(int id, int giamgia, float thanhTien, float tongTien, string tenTK)
         {
-            // Truy vấn SQL để lấy id của nhân viên dựa vào tên tài khoản
-            string queryGetIdNhanVien = "SELECT idNhanVien FROM TaiKhoan WHERE TenTK = @tenTK";
-            int idNhanVien = (int)DataProvider.Instance.ExecuteScalar(queryGetIdNhanVien, new object[] { tenTK });
+            try
+            {
+                // Truy vấn SQL để lấy id của nhân viên dựa vào tên tài khoản
+                string queryGetIdNhanVien = "SELECT idNhanVien FROM TaiKhoan WHERE TenTK = @tenTK";
+                SqlParameter[] parametersGetIdNhanVien = new SqlParameter[]
+                {
+            new SqlParameter("@tenTK", SqlDbType.NVarChar) { Value = tenTK }
+                };
 
-            // Cập nhật hóa đơn
-            string query = "UPDATE HoaDonBan SET DateCheckOut = GETDATE(), status = 1, thanhTien = @thanhTien, GiamGia = @giamgia, tongTien = @tongTien, idNhanVien = @idNhanVien WHERE id = @id";
-            DataProvider.Instance.ExecuteNonQuery(query, new object[] { thanhTien, giamgia, tongTien, idNhanVien, id });
+                int idNhanVien = (int)DataProvider.Instance.ExecuteScalar(queryGetIdNhanVien, parametersGetIdNhanVien);
+
+                // Cập nhật hóa đơn
+                string queryUpdateHoaDon = "UPDATE HoaDonBan SET DateCheckOut = GETDATE(), status = 1, thanhTien = @thanhTien, GiamGia = @giamgia, tongTien = @tongTien, idNhanVien = @idNhanVien WHERE id = @id";
+                SqlParameter[] parametersUpdateHoaDon = new SqlParameter[]
+                {
+            new SqlParameter("@thanhTien", SqlDbType.Float) { Value = thanhTien },
+            new SqlParameter("@giamgia", SqlDbType.Int) { Value = giamgia },
+            new SqlParameter("@tongTien", SqlDbType.Float) { Value = tongTien },
+            new SqlParameter("@idNhanVien", SqlDbType.Int) { Value = idNhanVien },
+            new SqlParameter("@id", SqlDbType.Int) { Value = id }
+                };
+
+                DataProvider.Instance.ExecuteNonQuery(queryUpdateHoaDon, parametersUpdateHoaDon);
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Lỗi: " + e.Message);
+            }
         }
 
 
 
         public DataTable LayDSHoaDonTheoNgay(DateTime checkIn, DateTime checkOut)
         {
-           return DataProvider.Instance.ExecuteQuery("exec ThongKeDSHoaDonTheoNgay @checkIn, @checkOut", new object[] { checkIn, checkOut });
+            // Câu lệnh SQL với tham số
+            string query = "exec ThongKeDSHoaDonTheoNgay @checkIn, @checkOut";
+
+            // Định nghĩa các tham số SQL
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+        new SqlParameter("@checkIn", SqlDbType.DateTime) { Value = checkIn },
+        new SqlParameter("@checkOut", SqlDbType.DateTime) { Value = checkOut }
+            };
+
+            try
+            {
+                // Thực thi câu lệnh SQL và trả về dữ liệu
+                return DataProvider.Instance.ExecuteQuery(query, parameters);
+            }
+            catch (Exception ex)
+            {
+                // Xử lý lỗi
+                MessageBox.Show("Lỗi khi lấy danh sách hóa đơn: " + ex.Message);
+                return null;
+            }
         }
     }
 }
