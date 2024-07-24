@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 using Menu = QLYCafe.DTO.Menu;
 
 namespace QLYCafe
@@ -40,7 +41,7 @@ namespace QLYCafe
             adminToolStripMenuItem.Enabled = type == 1;
            tàiKhoảnToolStripMenuItem.Text += " (" + LoginAcc.Username + ")";
         }
-        public string AccName(Account Acc)
+        public string AccName(Account account)
         {
             string tentk = LoginAcc.Username;
             return tentk;
@@ -128,6 +129,10 @@ namespace QLYCafe
         private void thôngTinCáNhânToolStripMenuItem_Click(object sender, EventArgs e)
         {
             fAccountProfile f = new fAccountProfile(loginAcc);
+            Account account = GetCurrentAccount();
+            string tenTK = AccName(account);
+            NhanVienDAO.Instance.GetIDNhanVienByTenTK(tenTK);
+            NhanVienDAO.Instance.GetNhanVienNameByCurrentAccount(tenTK);
             f.ShowDialog();
         }
 
@@ -180,10 +185,13 @@ namespace QLYCafe
 
                 if (idHoaDon != -1)
                 {
-                    if (MessageBox.Show(string.Format("Bạn có chắc chắn muốn thanh toán hóa đơn cho {0}\n Thành tiền - (Thành tiền / 100) x Giảm giá ={1} - ({1} / 100) x {2} = {3}", table.Name, thanhTien, giamgia, tongTien), "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
+                    if (MessageBox.Show("Xác nhận thanh toán!", "Thông báo", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
                         HoaDonDAO.Instance.CheckOut(idHoaDon, giamgia, (float)thanhTien, (float)tongTien, tenTK);
                         ShowHoaDon(table.ID);
+                        fHoaDon hd = new fHoaDon();
+                        hd.Show();
+                        hd.ShowHD("InHoaDon", table.ID);
                     }
                 }
                 else
@@ -269,6 +277,16 @@ namespace QLYCafe
         #endregion
 
         private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbTongTien_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
         {
 
         }

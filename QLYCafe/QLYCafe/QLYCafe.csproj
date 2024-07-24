@@ -18,7 +18,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>.\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -94,6 +94,18 @@
     <Compile Include="fAdmin.Designer.cs">
       <DependentUpon>fAdmin.cs</DependentUpon>
     </Compile>
+    <Compile Include="fBaoCao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fBaoCao.Designer.cs">
+      <DependentUpon>fBaoCao.cs</DependentUpon>
+    </Compile>
+    <Compile Include="fHoaDon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="fHoaDon.Designer.cs">
+      <DependentUpon>fHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="fLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -114,6 +126,42 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QLCF3DataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLCF3DataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLCF3DataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLCF3DataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLCF3DataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLCF3DataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLCF3DataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLCF3DataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLCF3DataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLCF3DataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="QLCF3DataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QLCF3DataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Report\HoaDon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HoaDon.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <EmbeddedResource Include="AddAcc.resx">
       <DependentUpon>AddAcc.cs</DependentUpon>
     </EmbeddedResource>
@@ -125,6 +173,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="fAdmin.resx">
       <DependentUpon>fAdmin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fBaoCao.resx">
+      <DependentUpon>fBaoCao.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="fHoaDon.resx">
+      <DependentUpon>fHoaDon.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="fLogin.resx">
       <DependentUpon>fLogin.cs</DependentUpon>
@@ -144,6 +198,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Report\HoaDon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>HoaDon.cs</LastGenOutput>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -153,10 +211,78 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="QLCF3DataSet.xsc">
+      <DependentUpon>QLCF3DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLCF3DataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLCF3DataSet.xss">
+      <DependentUpon>QLCF3DataSet.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet1.xsc">
+      <DependentUpon>QLCF3DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLCF3DataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLCF3DataSet1.xss">
+      <DependentUpon>QLCF3DataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet2.xsc">
+      <DependentUpon>QLCF3DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLCF3DataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLCF3DataSet2.xss">
+      <DependentUpon>QLCF3DataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet3.xsc">
+      <DependentUpon>QLCF3DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLCF3DataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLCF3DataSet3.xss">
+      <DependentUpon>QLCF3DataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet4.xsc">
+      <DependentUpon>QLCF3DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLCF3DataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLCF3DataSet4.xss">
+      <DependentUpon>QLCF3DataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet5.xsc">
+      <DependentUpon>QLCF3DataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="QLCF3DataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QLCF3DataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="QLCF3DataSet5.xss">
+      <DependentUpon>QLCF3DataSet5.xsd</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
